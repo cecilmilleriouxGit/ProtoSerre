@@ -1,0 +1,3 @@
+spring.datasource.url= jdbc:mysql://localhost/protoserre?serverTimezone=GMT
+spring.datasource.username= ****
+spring.datasource.password= ****
