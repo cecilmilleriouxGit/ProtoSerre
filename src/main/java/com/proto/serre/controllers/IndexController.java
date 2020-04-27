@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.expression.Lists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -27,10 +29,12 @@ public class IndexController {
 
     @GetMapping("/index")
     public String index(Model model) {
-        List<DateOfSave> allDateOfSave = dateOfSaveRepository.findAll();
+        List<DateOfSave> allDateOfSave = dateOfSaveRepository.findByDate();
         ArrayList arrList = new ArrayList();
 
         int count = 0;
+
+
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
             if (count < 7) {
                 ArrayList arr = new ArrayList();

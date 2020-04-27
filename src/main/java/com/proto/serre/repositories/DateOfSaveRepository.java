@@ -10,10 +10,10 @@ import java.util.List;
 public interface DateOfSaveRepository extends JpaRepository <DateOfSave, Long> {
 
     @Query(
-            value = "select * from Protoserre.date_of_save WHERE date_of_save.date BETWEEN current_date() AND current_date()- interval '7' day",
+            value = "SELECT * FROM Protoserre.date_of_save WHERE date_of_save.date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW();",
             nativeQuery = true
     )
-    List<DateOfSave> findByDateForSevenDays();
+    List<DateOfSave> findByDate();
 
 
     DateOfSave findByDate(Date date);
