@@ -27,25 +27,39 @@ public class IndexController {
 
     @GetMapping("/index")
     public String index(Model model){
-        List<DateOfSave> dateOfSaveForSevenDays = dateOfSaveRepository.findByDateForSevenDays();
-        System.out.println(dateOfSaveForSevenDays);
+        List<DateOfSave> allDateOfSave = dateOfSaveRepository.findAll();
         ArrayList arrList = new ArrayList();
-        int count = 0;
         ArrayList localDateList = new ArrayList();
-        for(DateOfSave dateOfSaveToArrayList : dateOfSaveForSevenDays){
-            if(count == 0){
-                arrList.add(count, localDateList);
-                List<DateOfSave> dateOfSaves = dateOfSaveRepository.findByDate(dateOfSaveToArrayList.getDate());
-                for(DateOfSave dateOfSave : dateOfSaves){
-                    localDateList.add(dateOfSave.getDate());/*.format(DateTimeFormatter.ofPattern("dd-MM-yyy")))*/
-                    for(Dht22 dht22 : dateOfSave.getDht22Set()){
+        for(int count = 1; count < 7; count++){
+            for(DateOfSave dateOfSaveToArrayList : allDateOfSave){
+                if(arrList.isEmpty()){
+                    arrList.add(localDateList);
+                }
+//                if(!localDateList.isEmpty()){
+//                    if(!dateOfSaveToArrayList.equals(localDateList.get(count-1))){
+//                        localDateList.add(dateOfSaveToArrayList.getDate());/*.format(DateTimeFormatter.ofPattern("dd-MM-yyy")))*/
+//                        for(Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()){
+//                            localDateList.add(dht22.getTemperature());
+//                            localDateList.add(dht22.getHumidity());
+//                        }
+//                    }
+//                }
+                if(localDateList.isEmpty()){
+                    localDateList.add(dateOfSaveToArrayList.getDate());/*.format(DateTimeFormatter.ofPattern("dd-MM-yyy")))*/
+                    for(Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()){
                         localDateList.add(dht22.getTemperature());
                         localDateList.add(dht22.getHumidity());
                     }
-//                    count += 1;
+                }
+//                if(dateOfSaveToArrayList.equals(localDateList.get(count))){
+//                    for(Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()){
+//                        localDateList.add(dht22.getTemperature());
+//                        localDateList.add(dht22.getHumidity());
+//                    }
                 }
             }
-        }
+
+
         System.out.println(arrList);
         System.out.println(localDateList.size());
 

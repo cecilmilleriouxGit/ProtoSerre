@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Calendar;
-import java.util.TimeZone;
+import java.util.Date;
 
 @RestController
 public class Dht22RestController {
@@ -26,16 +25,31 @@ public class Dht22RestController {
     @PostMapping("/dht22/store")
     public void storeData(@RequestParam float temperature,
                           @RequestParam float humidity){
-        DateOfSave dateOfSave = new DateOfSave();
-        Calendar cal = Calendar.getInstance();
-        TimeZone tz = TimeZone.getTimeZone("GMT");
-        cal.setTimeZone(tz);
-        dateOfSave.setDate(cal.getTime());
-        dateOfSaveRepository.save(dateOfSave);
-        Dht22 dht22 = new Dht22();
-        dht22.setDateOfSave(dateOfSave);
-        dht22.setTemperature(temperature);
-        dht22.setHumidity(humidity);
-        dht22Repository.save(dht22);
+
+        final java.sql.Date dateSQL = new java.sql.Date(new Date().getTime()) ;
+        DateOfSave dateOfSave = dateOfSaveRepository.findByDate(dateSQL);
+
+        System.out.println(new java.sql.Date(new Date().getTime()));
+        System.out.println(dateOfSave);
+
+        if (dateOfSave != null){
+            Dht22 dht22 = new Dht22();
+            dht22.setDateOfSave(dateOfSave);
+            dht22.setTemperature(temperature);
+            dht22.setHumidity(humidity);
+            dht22Repository.save(dht22);
+        }
+
+        if (dateOfSave == null){
+            DateOfSave newDateOfSave = new DateOfSave();
+            newDateOfSave.setDate(dateSQL);
+            System.out.println(newDateOfSave.getDate());
+            dateOfSaveRepository.save(newDateOfSave);
+            Dht22 dht22 = new Dht22();
+            dht22.setDateOfSave(newDateOfSave);
+            dht22.setTemperature(temperature);
+            dht22.setHumidity(humidity);
+            dht22Repository.save(dht22);
+        }
     }
 }
