@@ -46,9 +46,10 @@ public class IndexController {
                     arr.add(dht22.getHumidity());
                 }
                 count += 1;
+                model.addAttribute("arrayList"+count, arr);
+                System.out.println("arrayList"+count);
+                System.out.println(arr);
             }
-            System.out.println(arrList);
-            System.out.println(arrList.size());
         }
         return "index";
     }
