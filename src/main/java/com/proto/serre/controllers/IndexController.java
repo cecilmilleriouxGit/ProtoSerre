@@ -21,57 +21,32 @@ public class IndexController {
     Dht22Repository dht22Repository;
 
     @GetMapping("/")
-    public String redirect(){
+    public String redirect() {
         return "redirect:/index";
     }
 
     @GetMapping("/index")
-    public String index(Model model){
+    public String index(Model model) {
         List<DateOfSave> allDateOfSave = dateOfSaveRepository.findAll();
         ArrayList arrList = new ArrayList();
-        ArrayList localDateList1 = new ArrayList();
-        ArrayList localDateList2 = new ArrayList();
-        ArrayList localDateList3 = new ArrayList();
-        ArrayList localDateList4 = new ArrayList();
-        ArrayList localDateList5 = new ArrayList();
-        ArrayList localDateList6 = new ArrayList();
-        ArrayList localDateList7 = new ArrayList();
+
         int count = 0;
-            for(DateOfSave dateOfSaveToArrayList : allDateOfSave){
-                if(count < 7){
-                    arrList.add(localDateList1);
+        for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
+            if (count < 7) {
+                ArrayList arr = new ArrayList();
+                arrList.add(arr);
 
-                        localDateList1.add(dateOfSaveToArrayList.getDate());
-                        for(Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()){
-                            localDateList1.add(dht22.getTemperature());
-                            localDateList1.add(dht22.getHumidity());
-                        }
-                        count += 1;
-
-//                    if(!localDateList.isEmpty()){
-//                        if(count > 1){
-//                            localDateList.add(dateOfSaveToArrayList.getDate());
-//                            for(Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()){
-//                                localDateList.add(dht22.getTemperature());
-//                                localDateList.add(dht22.getHumidity());
-//                            }
-//                            count += 1;
-//                        }
-//                    }
+                arr.add(dateOfSaveToArrayList.getDate());
+                for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
+                    arr.add(dht22.getTemperature());
+                    arr.add(dht22.getHumidity());
                 }
+                count += 1;
             }
-        //                if(dateOfSaveToArrayList.equals(localDateList.get(count))){
-//                    for(Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()){
-//                        localDateList.add(dht22.getTemperature());
-//                        localDateList.add(dht22.getHumidity());
-//                    }
-
-
-
-        System.out.println(arrList);
-        System.out.println(localDateList1.size());
-
+            System.out.println(arrList);
+            System.out.println(arrList.size());
+        }
         return "index";
     }
-
 }
+
