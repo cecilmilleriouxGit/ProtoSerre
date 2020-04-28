@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.util.DateUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class IndexController {
@@ -38,33 +38,48 @@ public class IndexController {
                 arrList.add(arr);
                 SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
 //                arr.add(formater.format(dateOfSaveToArrayList.getDate()));
+                ArrayList arrayListSorted = new ArrayList();
                 for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                    arr.add(formater.format(dateOfSaveToArrayList.getDate())+ ", y:" + dht22.getTemperature());
+                    arrayListSorted.add(Math.round(dht22.getTemperature()));
+                }
+                Collections.sort(arrayListSorted);
+                for (Object dht22 : arrayListSorted) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(dateOfSaveToArrayList.getDate());
+                    cal.add(Calendar.MONTH, -1);
+                    Date dateAjust = cal.getTime();
+                    arr.add(formater.format(dateAjust)+ ", y:" + dht22);
                 }
                 countTemperature += 1;
                 model.addAttribute("arrayListTemperature"+countTemperature, arr);
-//                System.out.println("arrayListTemperature"+countTemperature);
-//                System.out.println(arr);
+
             }
         }
-//        model.addAttribute("arrayListTemperature1", arrList.get(0));
 
         System.out.println(arrList.get(0));
+
         int countHumidity = 0;
         // import humidity
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
             if (countHumidity < 7) {
                 ArrayList arr = new ArrayList();
                 arrList.add(arr);
-                SimpleDateFormat formater = new SimpleDateFormat("(dd, MM, yy)");
+                SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
 //                arr.add(formater.format(dateOfSaveToArrayList.getDate()));
+                ArrayList arrayListSorted = new ArrayList();
                 for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                    arr.add(formater.format(dateOfSaveToArrayList.getDate()) + ", y:" + dht22.getHumidity());
+                    arrayListSorted.add(Math.round(dht22.getHumidity()));
                 }
+                Collections.sort(arrayListSorted);
+                for (Object dht22 : arrayListSorted) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(dateOfSaveToArrayList.getDate());
+                    cal.add(Calendar.MONTH, -1);
+                    Date dateAjust = cal.getTime();
+                    arr.add(formater.format(dateAjust)+ ", y:" + dht22);                }
                 countHumidity += 1;
                 model.addAttribute("arrayListHumidity"+countHumidity, arr);
-//                System.out.println("arrayListHumidity"+countHumidity);
-//                System.out.println(arr);
+
             }
         }
         return "index";

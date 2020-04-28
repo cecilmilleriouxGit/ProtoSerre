@@ -8,57 +8,86 @@
     <html>
     <head>
         <script th:inline="javascript">
+
             /*<![CDATA[*/
 
             window.onload = function () {
 
-                var chart = new CanvasJS.Chart("chartContainer",
-                    {
-                        title: {
-                            text: "Date Time Formatting"
-                        },
-                        axisX:{
-                            valueFormatString: "DD-MMM" ,
-                            labelAngle: -50
-                        },
-                        axisY: {
-                            valueFormatString: "#,###"
-                        },
-
-                        data: [
-                            {
-                                type: "area",
-                                color: "rgba(0,75,141,0.7)",
-                                dataPoints: [
-
-
-                                    /*[# th:each="temp : ${arrayListTemperature1}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                    /*[# th:each="temp : ${arrayListTemperature2}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                    /*[# th:each="temp : ${arrayListTemperature3}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                    /*[# th:each="temp : ${arrayListTemperature4}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                    /*[# th:each="temp : ${arrayListTemperature5}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                    /*[# th:each="temp : ${arrayListTemperature6}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                    /*[# th:each="temp : ${arrayListTemperature7}"]*/
-                                    { x: new Date[(${temp})]},
-                                    /*[/]*/
-                                ]
-                            }
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    title:{
+                        text: "Temperature / Humidity"
+                    },
+                    axisX: {
+                        title:"Dates"
+                    },
+                    axisY:{
+                        title: "Temperature Blue / Humidity Red"
+                    },
+                    data: [{
+                        type: "scatter",
+                        toolTipContent: "<span style=\"color:#4F81BC \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Temperature:</b></span> {y}",
+                        name: "Temperature",
+                        showInLegend: true,
+                        yValueFormatString: "#0\"°C\"",
+                        xValueFormatString: "DD MMM YYYY",
+                        dataPoints: [
+                            /*[# th:each="temp : ${arrayListTemperature1}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature2}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature3}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature4}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature5}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature6}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature7}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
 
                         ]
+                    },
+                        {
+                            type: "scatter",
+                            name: "Humidity",
+                            showInLegend: true,
+                            toolTipContent: "<span style=\"color:#C0504E \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Humidity:</b></span> {y}",
+                            dataPoints: [
+                                /*[# th:each="humidity : ${arrayListHumidity1}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity2}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity3}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity4}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity5}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity6}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity7}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                            ]
+                        }]
                 });
                 chart.render();
+
             }
             /*]]>*/
 
