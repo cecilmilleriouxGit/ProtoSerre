@@ -55,9 +55,6 @@ public class IndexController {
 
             }
         }
-
-        System.out.println(arrList.get(0));
-
         int countHumidity = 0;
         // import humidity
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
@@ -79,7 +76,6 @@ public class IndexController {
                     arr.add(formater.format(dateAjust)+ ", y:" + dht22);                }
                 countHumidity += 1;
                 model.addAttribute("arrayListHumidity"+countHumidity, arr);
-
             }
         }
         return "index";
