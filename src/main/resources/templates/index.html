@@ -22,7 +22,7 @@
                         title:"Dates"
                     },
                     axisY:{
-                        title: "Temperature Blue / Humidity Red"
+                        title: "Temperature °C / Humidity %"
                     },
                     data: [{
                         type: "scatter",
@@ -60,6 +60,7 @@
                             type: "scatter",
                             name: "Humidity",
                             showInLegend: true,
+                            yValueFormatString: "#0\"%\"",
                             toolTipContent: "<span style=\"color:#C0504E \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Humidity:</b></span> {y}",
                             dataPoints: [
                                 /*[# th:each="humidity : ${arrayListHumidity1}"]*/
