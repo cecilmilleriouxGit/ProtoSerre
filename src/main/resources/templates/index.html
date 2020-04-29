@@ -32,28 +32,9 @@
                         yValueFormatString: "#0\"°C\"",
                         xValueFormatString: "DD MMM YYYY",
                         dataPoints: [
-                            /*[# th:each="temp : ${arrayListTemperature1}"]*/
-                            { x: new Date[(${temp})]},
+                            /*[# th:each="dateAndTemperature : ${globalTemperatureList}"]*/
+                            [(${dateAndTemperature})]
                             /*[/]*/
-                            /*[# th:each="temp : ${arrayListTemperature2}"]*/
-                            { x: new Date[(${temp})]},
-                            /*[/]*/
-                            /*[# th:each="temp : ${arrayListTemperature3}"]*/
-                            { x: new Date[(${temp})]},
-                            /*[/]*/
-                            /*[# th:each="temp : ${arrayListTemperature4}"]*/
-                            { x: new Date[(${temp})]},
-                            /*[/]*/
-                            /*[# th:each="temp : ${arrayListTemperature5}"]*/
-                            { x: new Date[(${temp})]},
-                            /*[/]*/
-                            /*[# th:each="temp : ${arrayListTemperature6}"]*/
-                            { x: new Date[(${temp})]},
-                            /*[/]*/
-                            /*[# th:each="temp : ${arrayListTemperature7}"]*/
-                            { x: new Date[(${temp})]},
-                            /*[/]*/
-
                         ]
                     },
                         {
@@ -63,26 +44,9 @@
                             yValueFormatString: "#0\"%\"",
                             toolTipContent: "<span style=\"color:#C0504E \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Humidity:</b></span> {y}",
                             dataPoints: [
-                                /*[# th:each="humidity : ${arrayListHumidity1}"]*/
-                                { x: new Date[(${humidity})]},
-                                /*[/]*/
-                                /*[# th:each="humidity : ${arrayListHumidity2}"]*/
-                                { x: new Date[(${humidity})]},
-                                /*[/]*/
-                                /*[# th:each="humidity : ${arrayListHumidity3}"]*/
-                                { x: new Date[(${humidity})]},
-                                /*[/]*/
-                                /*[# th:each="humidity : ${arrayListHumidity4}"]*/
-                                { x: new Date[(${humidity})]},
-                                /*[/]*/
-                                /*[# th:each="humidity : ${arrayListHumidity5}"]*/
-                                { x: new Date[(${humidity})]},
-                                /*[/]*/
-                                /*[# th:each="humidity : ${arrayListHumidity6}"]*/
-                                { x: new Date[(${humidity})]},
-                                /*[/]*/
-                                /*[# th:each="humidity : ${arrayListHumidity7}"]*/
-                                { x: new Date[(${humidity})]},
+
+                                /*[# th:each="dateAndHumidity : ${globalHumidityList}"]*/
+                                [(${dateAndHumidity})]
                                 /*[/]*/
                             ]
                         }]

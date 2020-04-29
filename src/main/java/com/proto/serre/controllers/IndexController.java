@@ -29,56 +29,53 @@ public class IndexController {
     @GetMapping("/index")
     public String index(Model model) {
         List<DateOfSave> allDateOfSave = dateOfSaveRepository.findByDate();
-        ArrayList arrList = new ArrayList();
-        int countTemperature = 0;
-        // import temperature
+        ArrayList globalTemperatureList = new ArrayList();
+        // allDateOfSave =  date for 7 days
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
-            if (countTemperature < 7) {
-                ArrayList arr = new ArrayList();
-                arrList.add(arr);
-                SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
-//                arr.add(formater.format(dateOfSaveToArrayList.getDate()));
-                ArrayList arrayListSorted = new ArrayList();
-                for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                    arrayListSorted.add(Math.round(dht22.getTemperature()));
-                }
-                Collections.sort(arrayListSorted);
-                for (Object dht22 : arrayListSorted) {
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(dateOfSaveToArrayList.getDate());
-                    cal.add(Calendar.MONTH, -1);
-                    Date dateAjust = cal.getTime();
-                    arr.add(formater.format(dateAjust)+ ", y:" + dht22);
-                }
-                countTemperature += 1;
-                model.addAttribute("arrayListTemperature"+countTemperature, arr);
-
+            ArrayList arrayListDateAndTemperature = new ArrayList();
+            SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
+            // arr.add(formater.format(dateOfSaveToArrayList.getDate()));
+            ArrayList arrayListSorted = new ArrayList();
+            for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
+                arrayListSorted.add(Math.round(dht22.getTemperature()));
+            }
+            Collections.sort(arrayListSorted);
+            for (Object dht22 : arrayListSorted) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dateOfSaveToArrayList.getDate());
+                cal.add(Calendar.MONTH, -1);
+                Date dateAjust = cal.getTime();
+                arrayListDateAndTemperature.add("{ x: new Date"+ formater.format(dateAjust)+ ", y:" + dht22+"},");
+            }
+            for (Object arrToFinal: arrayListDateAndTemperature){
+                globalTemperatureList.add(arrToFinal);
             }
         }
+        model.addAttribute("globalTemperatureList", globalTemperatureList);
 
-        int countHumidity = 0;
-        // import humidity
+        ArrayList globalHumidityList = new ArrayList();
+        // allDateOfSave =  date for 7 days
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
-            if (countHumidity < 7) {
-                ArrayList arr = new ArrayList();
-                arrList.add(arr);
-                SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
-//                arr.add(formater.format(dateOfSaveToArrayList.getDate()));
-                ArrayList arrayListSorted = new ArrayList();
-                for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                    arrayListSorted.add(Math.round(dht22.getHumidity()));
-                }
-                Collections.sort(arrayListSorted);
-                for (Object dht22 : arrayListSorted) {
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(dateOfSaveToArrayList.getDate());
-                    cal.add(Calendar.MONTH, -1);
-                    Date dateAjust = cal.getTime();
-                    arr.add(formater.format(dateAjust)+ ", y:" + dht22);                }
-                countHumidity += 1;
-                model.addAttribute("arrayListHumidity"+countHumidity, arr);
+            ArrayList arrayListDateAndTemperature = new ArrayList();
+            SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
+            // arr.add(formater.format(dateOfSaveToArrayList.getDate()));
+            ArrayList arrayListSorted = new ArrayList();
+            for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
+                arrayListSorted.add(Math.round(dht22.getHumidity()));
+            }
+            Collections.sort(arrayListSorted);
+            for (Object dht22 : arrayListSorted) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dateOfSaveToArrayList.getDate());
+                cal.add(Calendar.MONTH, -1);
+                Date dateAjust = cal.getTime();
+                arrayListDateAndTemperature.add("{ x: new Date"+ formater.format(dateAjust)+ ", y:" + dht22+"},");
+            }
+            for (Object arrToFinal: arrayListDateAndTemperature){
+                globalHumidityList.add(arrToFinal);
             }
         }
+        model.addAttribute("globalHumidityList", globalHumidityList);
         return "index";
     }
 }
