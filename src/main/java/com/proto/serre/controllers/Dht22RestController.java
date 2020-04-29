@@ -29,9 +29,6 @@ public class Dht22RestController {
         final java.sql.Date dateSQL = new java.sql.Date(new Date().getTime()) ;
         DateOfSave dateOfSave = dateOfSaveRepository.findByDate(dateSQL);
 
-        System.out.println(new java.sql.Date(new Date().getTime()));
-        System.out.println(dateOfSave);
-
         if (dateOfSave != null){
             Dht22 dht22 = new Dht22();
             dht22.setDateOfSave(dateOfSave);
@@ -43,7 +40,6 @@ public class Dht22RestController {
         if (dateOfSave == null){
             DateOfSave newDateOfSave = new DateOfSave();
             newDateOfSave.setDate(dateSQL);
-            System.out.println(newDateOfSave.getDate());
             dateOfSaveRepository.save(newDateOfSave);
             Dht22 dht22 = new Dht22();
             dht22.setDateOfSave(newDateOfSave);
