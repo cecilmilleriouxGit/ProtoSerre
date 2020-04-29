@@ -14,6 +14,7 @@ try: # Main program loop
             param = {'temperature':(float(temperature)),'humidity':(float(humidity))}
             print(param)
             r = requests.post('http://192.168.0.42:8080/dht22/store', data=param)
+            print("data send")
         else:
             print("Failed to get reading. Try again!")
 
