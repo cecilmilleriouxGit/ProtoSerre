@@ -13,8 +13,11 @@ try: # Main program loop
             print("Temp={0:0.1f}*C Humidity={1:0.1f}%".format(temperature, humidity))
             param = {'temperature':(float(temperature)),'humidity':(float(humidity))}
             print(param)
-            r = requests.post('http://192.168.0.42:8080/dht22/store', data=param)
-            print("data send")
+            try:
+                r = requests.post('http://192.168.0.42:8080/dht22/store', data=param)
+                print("data send")
+            except:
+                print("Connection Failure")
         else:
             print("Failed to get reading. Try again!")
 
