@@ -1,9 +1,7 @@
 package com.proto.serre.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 
 @Entity
 public class Dht22 {
@@ -13,6 +11,8 @@ public class Dht22 {
     private Long id;
     private float temperature;
     private float humidity;
+    @ManyToOne
+    private DateOfSave dateOfSave;
 
     public Dht22() {
     }
@@ -44,5 +44,13 @@ public class Dht22 {
 
     public void setHumidity(float humidity) {
         this.humidity = humidity;
+    }
+
+    public DateOfSave getDateOfSave() {
+        return dateOfSave;
+    }
+
+    public void setDateOfSave(DateOfSave dateOfSave) {
+        this.dateOfSave = dateOfSave;
     }
 }

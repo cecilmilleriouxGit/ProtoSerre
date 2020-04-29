@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head.html :: head"></div>
+<body class="containerGray">
+<div class="container">
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <script th:inline="javascript">
+
+            /*<![CDATA[*/
+
+            window.onload = function () {
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    title:{
+                        text: "Temperature / Humidity"
+                    },
+                    axisX: {
+                        title:"Dates"
+                    },
+                    axisY:{
+                        title: "Temperature °C / Humidity %"
+                    },
+                    data: [{
+                        type: "scatter",
+                        toolTipContent: "<span style=\"color:#4F81BC \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Temperature:</b></span> {y}",
+                        name: "Temperature",
+                        showInLegend: true,
+                        yValueFormatString: "#0\"°C\"",
+                        xValueFormatString: "DD MMM YYYY",
+                        dataPoints: [
+                            /*[# th:each="temp : ${arrayListTemperature1}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature2}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature3}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature4}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature5}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature6}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+                            /*[# th:each="temp : ${arrayListTemperature7}"]*/
+                            { x: new Date[(${temp})]},
+                            /*[/]*/
+
+                        ]
+                    },
+                        {
+                            type: "scatter",
+                            name: "Humidity",
+                            showInLegend: true,
+                            yValueFormatString: "#0\"%\"",
+                            toolTipContent: "<span style=\"color:#C0504E \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Humidity:</b></span> {y}",
+                            dataPoints: [
+                                /*[# th:each="humidity : ${arrayListHumidity1}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity2}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity3}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity4}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity5}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity6}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                                /*[# th:each="humidity : ${arrayListHumidity7}"]*/
+                                { x: new Date[(${humidity})]},
+                                /*[/]*/
+                            ]
+                        }]
+                });
+                chart.render();
+
+            }
+            /*]]>*/
+
+        </script>
+    </head>
+    <body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </body>
+    </html>
+</div>
+
+<script th:replace="fragments/script.html :: script"></script>
+
+</body>
+</html>
