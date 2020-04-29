@@ -8,7 +8,6 @@ print("[press ctrl+c to end the script]")
 try: # Main program loop
     while True:
         humidity, temperature = Adafruit_DHT.read_retry(sensor,pin)
-        sleep(3600)
         if humidity is not None and temperature is not None:
             print("Temp={0:0.1f}*C Humidity={1:0.1f}%".format(temperature, humidity))
             param = {'temperature':(float(temperature)),'humidity':(float(humidity))}
@@ -20,7 +19,7 @@ try: # Main program loop
                 print("Connection Failure")
         else:
             print("Failed to get reading. Try again!")
-
+        sleep(3600)
 # Scavenging work after the end of the program
 except KeyboardInterrupt:
     print("Script end!")
