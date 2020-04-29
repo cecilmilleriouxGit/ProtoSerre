@@ -55,6 +55,7 @@ public class IndexController {
 
             }
         }
+
         int countHumidity = 0;
         // import humidity
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
