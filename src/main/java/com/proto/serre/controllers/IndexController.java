@@ -59,6 +59,10 @@ public class IndexController {
             Integer max = Integer.MIN_VALUE;
             String hourMin = "";
             String hourMax = "";
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(dateOfSaveToArrayList.getDate());
+            Date dateAjust = cal.getTime();
+            SimpleDateFormat formaterMinMax = new SimpleDateFormat("E");
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
                 if(min > Math.round(dht22.getTemperature())){
                     min = Math.round(dht22.getTemperature());
@@ -68,17 +72,8 @@ public class IndexController {
                     max = Math.round(dht22.getTemperature());
                     hourMax = dht22.getHour();
                 }
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(dateOfSaveToArrayList.getDate());
-//                cal.add(Calendar.MONTH, -1);
-//                cal.add(Calendar.DAY_OF_WEEK, -1);
-                Date dateAjust = cal.getTime();
-//                Calendar c = Calendar.getInstance();
-//                c.setTime(dateAjust);
-//                int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-                SimpleDateFormat formaterMinMax = new SimpleDateFormat("E");
-                arrayListDateAndTemperatureMinMax.add("{ label: \""+formaterMinMax.format(dateAjust)+"\", y: ["+min+", "+max+"], hourMin: \""+hourMin+"\", hourMax:\""+hourMax+"\" },");
             }
+            arrayListDateAndTemperatureMinMax.add("{ label: \""+formaterMinMax.format(dateAjust)+"\", y: ["+min+", "+max+"], hourMin: \""+hourMin+"\", hourMax:\""+hourMax+"\" },");
             for (Object arrToFinal: arrayListDateAndTemperatureMinMax){
                 globalTemperatureMinMaxListForSevenDays.add(arrToFinal);
             }
