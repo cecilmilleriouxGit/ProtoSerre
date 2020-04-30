@@ -13,7 +13,7 @@ public interface DateOfSaveRepository extends JpaRepository <DateOfSave, Long> {
             value = "SELECT * FROM Protoserre.date_of_save WHERE date_of_save.date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW();",
             nativeQuery = true
     )
-    List<DateOfSave> findByDate();
+    List<DateOfSave> findByDateForSevenDays();
 
 
     DateOfSave findByDate(Date date);

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 @RestController
@@ -28,10 +31,10 @@ public class Dht22RestController {
 
         final java.sql.Date dateSQL = new java.sql.Date(new Date().getTime()) ;
         DateOfSave dateOfSave = dateOfSaveRepository.findByDate(dateSQL);
-
         if (dateOfSave != null){
             Dht22 dht22 = new Dht22();
             dht22.setDateOfSave(dateOfSave);
+            dht22.setHour(LocalDateTime.now().getHour()+"h");
             dht22.setTemperature(temperature);
             dht22.setHumidity(humidity);
             dht22Repository.save(dht22);
@@ -43,6 +46,7 @@ public class Dht22RestController {
             dateOfSaveRepository.save(newDateOfSave);
             Dht22 dht22 = new Dht22();
             dht22.setDateOfSave(newDateOfSave);
+            dht22.setHour(LocalDateTime.now().getHour()+"h");
             dht22.setTemperature(temperature);
             dht22.setHumidity(humidity);
             dht22Repository.save(dht22);

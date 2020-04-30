@@ -15,6 +15,7 @@
 
                 var chart = new CanvasJS.Chart("chartContainer", {
                     animationEnabled: true,
+                    zoomEnabled: true,
                     title:{
                         text: "Temperature / Humidity for last 7 days"
                     },
@@ -32,7 +33,7 @@
                         yValueFormatString: "#0\"°C\"",
                         xValueFormatString: "DD MMM YYYY",
                         dataPoints: [
-                            /*[# th:each="dateAndTemperature : ${globalTemperatureList}"]*/
+                            /*[# th:each="dateAndTemperature : ${globalTemperatureListForSevenDays}"]*/
                             [(${dateAndTemperature})]
                             /*[/]*/
                         ]
@@ -45,7 +46,7 @@
                             toolTipContent: "<span style=\"color:#C0504E \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Humidity:</b></span> {y}",
                             dataPoints: [
 
-                                /*[# th:each="dateAndHumidity : ${globalHumidityList}"]*/
+                                /*[# th:each="dateAndHumidity : ${globalHumidityListForSevenDays}"]*/
                                 [(${dateAndHumidity})]
                                 /*[/]*/
                             ]

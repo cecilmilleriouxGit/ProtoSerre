@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.thymeleaf.util.DateUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,13 +27,11 @@ public class IndexController {
 
     @GetMapping("/index")
     public String index(Model model) {
-        List<DateOfSave> allDateOfSave = dateOfSaveRepository.findByDate();
-        ArrayList globalTemperatureList = new ArrayList();
-        // allDateOfSave =  date for 7 days
-        for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
+        List<DateOfSave> allDateOfSaveForSevenDays = dateOfSaveRepository.findByDateForSevenDays();
+        ArrayList globalTemperatureListForSevenDays = new ArrayList();
+        for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
             ArrayList arrayListDateAndTemperature = new ArrayList();
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
-            // arr.add(formater.format(dateOfSaveToArrayList.getDate()));
             ArrayList arrayListSorted = new ArrayList();
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
                 arrayListSorted.add(Math.round(dht22.getTemperature()));
@@ -48,17 +45,15 @@ public class IndexController {
                 arrayListDateAndTemperature.add("{ x: new Date"+ formater.format(dateAjust)+ ", y:" + dht22+"},");
             }
             for (Object arrToFinal: arrayListDateAndTemperature){
-                globalTemperatureList.add(arrToFinal);
+                globalTemperatureListForSevenDays.add(arrToFinal);
             }
         }
-        model.addAttribute("globalTemperatureList", globalTemperatureList);
+        model.addAttribute("globalTemperatureListForSevenDays", globalTemperatureListForSevenDays);
 
-        ArrayList globalHumidityList = new ArrayList();
-        // allDateOfSave =  date for 7 days
-        for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
+        ArrayList globalHumidityListForSevenDays = new ArrayList();
+        for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
             ArrayList arrayListDateAndTemperature = new ArrayList();
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
-            // arr.add(formater.format(dateOfSaveToArrayList.getDate()));
             ArrayList arrayListSorted = new ArrayList();
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
                 arrayListSorted.add(Math.round(dht22.getHumidity()));
@@ -72,10 +67,10 @@ public class IndexController {
                 arrayListDateAndTemperature.add("{ x: new Date"+ formater.format(dateAjust)+ ", y:" + dht22+"},");
             }
             for (Object arrToFinal: arrayListDateAndTemperature){
-                globalHumidityList.add(arrToFinal);
+                globalHumidityListForSevenDays.add(arrToFinal);
             }
         }
-        model.addAttribute("globalHumidityList", globalHumidityList);
+        model.addAttribute("globalHumidityListForSevenDays", globalHumidityListForSevenDays);
         return "index";
     }
 }
