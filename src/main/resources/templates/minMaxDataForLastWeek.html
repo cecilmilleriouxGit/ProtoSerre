@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head.html :: head"></div>
+<body class="containerGray">
+<div class="container">
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            window.onload = function () {
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    title:{
+                        text: "Temperature min and max for a week"
+                    },
+                    axisY: {
+                        includeZero: false,
+                        suffix: " °C",
+                        maximum: 40,
+                        gridThickness: 0
+                    },
+                    toolTip:{
+                        shared: true,
+                        content: " <strong>Temperature: </strong> </br> Max: {y[1]} °C à {hourMax} </br> Min: {y[0]} °C à {hourMin}"
+                    },
+                    data: [{
+                        type: "rangeSplineArea",
+                        fillOpacity: 0.1,
+                        color: "#91AAB1",
+                        indexLabelFormatter: formatter,
+                        dataPoints: [
+                            // { label: "Monday", y: [15, 26], hourMin: "5h", hourMax:"17h" },
+                            /*[# th:each="dateAndMinMaxTemperature : ${globalTemperatureMinMaxListForSevenDays}"]*/
+                            [(${dateAndMinMaxTemperature})]
+                            /*[/]*/
+                        ]
+                    }]
+                });
+                chart.render();
+                function formatter(e) {
+                    if(e.index === 0 && e.dataPoint.x === 0) {
+                        return " Min " + e.dataPoint.y[e.index] + "°";
+                    } else if(e.index == 1 && e.dataPoint.x === 0) {
+                        return " Max " + e.dataPoint.y[e.index] + "°";
+                    } else{
+                        return e.dataPoint.y[e.index] + "°";
+                    }
+                }
+
+            }
+            /*]]>*/
+        </script>
+    </head>
+    <body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </body>
+    </html>
+</div>
+
+<script th:replace="fragments/script.html :: script"></script>
+
+</body>
+</html>

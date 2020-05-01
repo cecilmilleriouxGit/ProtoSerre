@@ -9,13 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 @Controller
-public class IndexController {
+public class AllDataForLastWeekController {
 
     @Autowired
     DateOfSaveRepository dateOfSaveRepository;
@@ -24,11 +22,11 @@ public class IndexController {
 
     @GetMapping("/")
     public String redirect() {
-        return "redirect:/index";
+        return "redirect:/allDataForLastWeek";
     }
 
-    @GetMapping("/index")
-    public String index(Model model) {
+    @GetMapping("/allDataForLastWeek")
+    public String allDataForLastWeek(Model model) {
         // All temperature for seven days
         List<DateOfSave> allDateOfSaveForSevenDays = dateOfSaveRepository.findByDateForSevenDays();
         ArrayList globalTemperatureListForSevenDays = new ArrayList();
@@ -104,7 +102,7 @@ public class IndexController {
         model.addAttribute("globalHumidityListForSevenDays", globalHumidityListForSevenDays);
 
 
-        return "index";
+        return "allDataForLastWeek";
     }
 }
 
