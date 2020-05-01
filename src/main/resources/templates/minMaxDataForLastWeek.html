@@ -2,10 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="fragments/head.html :: head"></div>
-<body class="containerGray">
-<div class="container">
-    <!DOCTYPE HTML>
-    <html>
     <head>
         <script th:inline="javascript">
             /*<![CDATA[*/
@@ -52,14 +48,48 @@
             /*]]>*/
         </script>
     </head>
-    <body>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <body class="containerGray container-fluid">
+        <div class="row justify-content-center">
+            <div class="panel">
+
+                <nav class="nav nav-tabs">
+                    <form method="GET"
+                          th:action="@{/allDataForLastWeek}">
+                        <button class="nav-item nav-link"
+                        type="submit">
+                            All data for last week
+                        </button>
+                    </form>
+                    <form method="GET"
+                          th:action="@{/minMaxDataForLastWeek}">
+                        <button class="nav-item nav-link active"
+                        type="submit">
+                            Min and Max temperature for last week
+                        </button>
+                    </form>
+                </nav>
+
+                <div class="tab-content text-center">
+                    <div class="tab-pane fade show active"
+                         id="p1">
+                        <div class="row justify-content-center align-content-center">
+                            <div class="card text-center col-10">
+                                <div class="card-header"></div>
+                                <div class="card-body">
+                                        <div id="chartContainer"
+                                             style="height: 370px;
+                                             width: 100%;">
+                                        </div>
+                                </div>
+                                <div class="card-footer text-muted"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script th:replace="fragments/script.html :: script"></script>
     </body>
-    </html>
-</div>
-
-<script th:replace="fragments/script.html :: script"></script>
-
-</body>
 </html>
