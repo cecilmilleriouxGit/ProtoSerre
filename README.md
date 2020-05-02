@@ -42,7 +42,7 @@ command in terminal:
 
 On the raspberry which runs the server, you must also create a MySQL database with the command:
 
-CREATE DATABASE Protoserre;
+`CREATE DATABASE Protoserre;`
 
 To start go edit the file: 
 
