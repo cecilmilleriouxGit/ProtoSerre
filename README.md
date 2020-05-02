@@ -1,5 +1,7 @@
 # DHT22 Spring-boot Raspberry
 
+Spring Boot software to run on a Raspberry Pi 3A+ and 4B+ to read from a DHT-22 temperature and humidity sensor
+
 This repository is an Open Source project.
 
 This project uses a trial version of CanvasJs for the graphical interface.  
