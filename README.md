@@ -28,7 +28,9 @@ First command is for making the system up to date:
 
 Second command is for installing python3-pip app. 
 We will use pip app to install library:
+
  `sudo apt-get install python3-pip`
+ 
 Third command is for installing other apps that pip app uses during installation:
 
     sudo python3 -m pip install --upgrade pip setuptools wheel
