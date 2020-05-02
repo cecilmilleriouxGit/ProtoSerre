@@ -20,14 +20,16 @@ You can see the mapping with the command:
 On the raspberry on which you plug the DHT22 chip
 
 The library we are going to use is called "Adafruit_DHT". To install it we first
-need to make sure Rasbian is up to date. Start your Raspberry Pi, open
-terminal and run these commands:
-First command is for making the system up to date: `sudo apt-get update && sudo apt-get upgrade -y`
-Second command is for installing python3-pip app. We will use pip app to
-install library:
+need to make sure Rasbian is up to date. 
+Start your Raspberry Pi, open terminal and run these commands:
+First command is for making the system up to date: 
+
+`sudo apt-get update && sudo apt-get upgrade -y`
+
+Second command is for installing python3-pip app. 
+We will use pip app to install library:
  `sudo apt-get install python3-pip`
-Third command is for installing other apps that pip app uses during
-installation:
+Third command is for installing other apps that pip app uses during installation:
 
     sudo python3 -m pip install --upgrade pip setuptools wheel
 
