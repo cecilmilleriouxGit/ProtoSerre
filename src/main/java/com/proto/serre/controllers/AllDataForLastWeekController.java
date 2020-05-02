@@ -68,8 +68,6 @@ public class AllDataForLastWeekController {
             }
         }
         model.addAttribute("globalHumidityListForSevenDays", globalHumidityListForSevenDays);
-
-
         return "allDataForLastWeek";
     }
 }
