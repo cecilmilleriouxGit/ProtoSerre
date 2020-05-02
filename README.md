@@ -49,7 +49,7 @@ On the raspberry which runs the server, you must also create a MySQL database wi
 
 To start go edit the file: 
 
-    nano ProtoSerre/src/main/resources/application.properties.example
+    nano ProtoSerre/src/main/resources/application.properties.exemple
 
 add your MySQL account :
 
