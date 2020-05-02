@@ -32,3 +32,6 @@ build/
 
 ### Application.properties ###
 application.properties
+
+##python cache ##
+.mypy_cache
