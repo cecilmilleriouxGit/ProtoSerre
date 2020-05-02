@@ -13,20 +13,20 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-public class AllDataForLastWeekController {
+public class AllDataController {
 
     @Autowired
     DateOfSaveRepository dateOfSaveRepository;
     @Autowired
     Dht22Repository dht22Repository;
 
-    @GetMapping("/allDataForLastWeek")
-    public String allDataForLastWeek(Model model) {
+    @GetMapping("/allData")
+    public String allData(Model model) {
         // All temperature for seven days
-        List<DateOfSave> allDateOfSaveForSevenDays = dateOfSaveRepository.findByDateForSevenDays();
-        ArrayList globalTemperatureListForSevenDays = new ArrayList();
+        List<DateOfSave> allDateOfSave = dateOfSaveRepository.findAll();
+        ArrayList globalTemperatureList = new ArrayList();
 
-        for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
+        for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
             ArrayList arrayListDateAndTemperature = new ArrayList();
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
             ArrayList arrayListTemperatureSorted = new ArrayList();
@@ -42,13 +42,13 @@ public class AllDataForLastWeekController {
                 arrayListDateAndTemperature.add("{ x: new Date"+ formater.format(dateAjust) + ", y:" + dht22+"},");
             }
             for (Object arrToFinal: arrayListDateAndTemperature){
-                globalTemperatureListForSevenDays.add(arrToFinal);
+                globalTemperatureList.add(arrToFinal);
             }
         }
-        model.addAttribute("globalTemperatureListForSevenDays", globalTemperatureListForSevenDays);
+        model.addAttribute("globalTemperatureList", globalTemperatureList);
         // All humidity for seven days
-        ArrayList globalHumidityListForSevenDays = new ArrayList();
-        for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
+        ArrayList globalHumidityList = new ArrayList();
+        for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
             ArrayList arrayListDateAndTemperature = new ArrayList();
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
             ArrayList arrayListSorted = new ArrayList();
@@ -64,13 +64,11 @@ public class AllDataForLastWeekController {
                 arrayListDateAndTemperature.add("{ x: new Date"+ formater.format(dateAjust) + ", y:" + dht22+"},");
             }
             for (Object arrToFinal: arrayListDateAndTemperature){
-                globalHumidityListForSevenDays.add(arrToFinal);
+                globalHumidityList.add(arrToFinal);
             }
         }
-        model.addAttribute("globalHumidityListForSevenDays", globalHumidityListForSevenDays);
-
-
-        return "allDataForLastWeek";
+        model.addAttribute("globalHumidityList", globalHumidityList);
+        return "allData";
     }
 }
 

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-public class MinMaxDataForLastWeek {
+public class MinMaxTempForLastWeekController {
 
     @Autowired
     DateOfSaveRepository dateOfSaveRepository;
@@ -53,6 +53,6 @@ public class MinMaxDataForLastWeek {
             }
         }
         model.addAttribute("globalTemperatureMinMaxListForSevenDays", globalTemperatureMinMaxListForSevenDays);
-        return "minMaxDataForLastWeek";
+        return "minMaxTempForLastWeek";
     }
 }
