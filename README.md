@@ -78,7 +78,7 @@ The python script takes the measurements and transmits them to the server every 
 
 You can access the graphical interface:
 
-http://localhost: 8080 ( on the raspberry 4B+ )
+http://localhost:8080 ( on the raspberry 4B+ )
 
 http://192.168.0.33:8080/ ( on your other device )
 
