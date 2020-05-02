@@ -1,6 +1,6 @@
 # DHT22 Spring-boot Raspberry
 
-Spring Boot software to run on a Raspberry Pi 3A+ to run DHT22.py (chip) and 4B+ te run maven server to read from a DHT-22 temperature and humidity sensor
+Spring Boot software to run on a Raspberry Pi 3A+ to use DHT22 (chip) and 4B+ to run maven server to read from this temperature and humidity sensor
 
 This repository is an Open Source project.
 
