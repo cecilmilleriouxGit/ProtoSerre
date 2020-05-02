@@ -72,7 +72,7 @@ To launch the server (raspberry 4B +) use the command (at the root of the projec
 
     mvn spring-boot: run
 
-To launch the python script (raspberry 3A +) use the command (in the src / main / python / package):
+To launch the python script (raspberry 3A +) use the command (in the src/main/python/):
 
     python3 DHT22.py
 
