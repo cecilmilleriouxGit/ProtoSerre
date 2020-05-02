@@ -1,0 +1,34 @@
+.containerVerticalAlign{
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.verticalAlign{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.containerGray{
+    background-color: #d3d9df;
+    height: 100%;
+    width: 100%;
+}
+
+.panel{
+    background-color: #5a6268;
+    width: 1350px;
+    height: 620px;
+    margin-top: 8%;
+}
+
+.nav-tabs{
+    background-color: #6c757d;
+}
+
+.nav-link{
+    color: #5a6268;
+}
+.card{
+    margin-top: 4%;
+}
