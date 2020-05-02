@@ -22,7 +22,7 @@ public class AllDataController {
 
     @GetMapping("/allData")
     public String allData(Model model) {
-        // All temperature for seven days
+        // All temperature
         List<DateOfSave> allDateOfSave = dateOfSaveRepository.findAll();
         ArrayList globalTemperatureList = new ArrayList();
 
@@ -46,7 +46,7 @@ public class AllDataController {
             }
         }
         model.addAttribute("globalTemperatureList", globalTemperatureList);
-        // All humidity for seven days
+        // All humidity
         ArrayList globalHumidityList = new ArrayList();
         for (DateOfSave dateOfSaveToArrayList : allDateOfSave) {
             ArrayList arrayListDateAndTemperature = new ArrayList();

@@ -39,7 +39,6 @@ public class Dht22RestController {
             dht22.setHumidity(humidity);
             dht22Repository.save(dht22);
         }
-
         if (dateOfSave == null){
             DateOfSave newDateOfSave = new DateOfSave();
             newDateOfSave.setDate(dateSQL);
