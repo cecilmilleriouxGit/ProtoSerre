@@ -9,8 +9,11 @@ Make sure you get the license for commercial use.
 To use this code you need a Raspberry (two in my case) and the DHT22 chip.
 
 DHT22 pin => Raspberry Pi pin
+
  "+"  => [PIN2] (5v)
+ 
 "out" => [PIN32] GPIO12
+
 "-" => [PIN30] GND
 
 You can see the mapping with the command: 
