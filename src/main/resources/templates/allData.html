@@ -23,7 +23,7 @@
                     toolTipContent: "<span style=\"color:#4F81BC \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Temperature:</b></span> {y}",
                     name: "Temperature",
                     showInLegend: true,
-                    yValueFormatString: "#0\"°C\"",
+                    yValueFormatString: "##.0\"°C\"",
                     xValueFormatString: "DD MMM YYYY",
                     dataPoints: [
                         /*[# th:each="dateAndTemperature : ${globalTemperatureList}"]*/
@@ -35,7 +35,7 @@
                         type: "scatter",
                         name: "Humidity",
                         showInLegend: true,
-                        yValueFormatString: "#0\"%\"",
+                        yValueFormatString: "##.0\"%\"",
                         toolTipContent: "<span style=\"color:#C0504E \"><b>{name}</b></span><br/><b> Date:</b> {x}<br/><b> Humidity:</b></span> {y}",
                         dataPoints: [
 
