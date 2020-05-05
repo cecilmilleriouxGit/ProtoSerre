@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,11 +28,13 @@ public class MinMaxTempForLastWeekController {
         // All temperature for seven days
         List<DateOfSave> allDateOfSaveForSevenDays = dateOfSaveRepository.findByDateForSevenDays();
         ArrayList globalTemperatureMinMaxListForSevenDays = new ArrayList();
+        NumberFormat df = new DecimalFormat("00.00");
+        df.setRoundingMode((RoundingMode.DOWN));
         for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
             // Min and Max temperature for seven days
             ArrayList arrayListDateAndTemperatureMinMax = new ArrayList();
-            Integer min = Integer.MAX_VALUE;
-            Integer max = Integer.MIN_VALUE;
+            double min = Integer.MAX_VALUE;
+            double max = Integer.MIN_VALUE;
             String hourMin = "";
             String hourMax = "";
             Calendar cal = Calendar.getInstance();
@@ -37,12 +42,12 @@ public class MinMaxTempForLastWeekController {
             Date dateAjust = cal.getTime();
             SimpleDateFormat formaterMinMax = new SimpleDateFormat("E");
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                if(min > Math.round(dht22.getTemperature())){
-                    min = Math.round(dht22.getTemperature());
+                if(min > Math.round(dht22.getTemperature()*100.0)/100.0){
+                    min = Math.round(dht22.getTemperature()*100.0)/100.0;
                     hourMin = dht22.getHour();
                 }
-                if(max < Math.round(dht22.getTemperature())) {
-                    max = Math.round(dht22.getTemperature());
+                if(max < Math.round(dht22.getTemperature()*100.0)/100.0) {
+                    max = Math.round(dht22.getTemperature()*100.0)/100.0;
                     hourMax = dht22.getHour();
                 }
             }
