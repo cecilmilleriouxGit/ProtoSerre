@@ -28,8 +28,8 @@ public class MinMaxTempForLastWeekController {
         for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
             // Min and Max temperature for seven days
             ArrayList arrayListDateAndTemperatureMinMax = new ArrayList();
-            Integer min = Integer.MAX_VALUE;
-            Integer max = Integer.MIN_VALUE;
+            double min = Integer.MAX_VALUE;
+            double max = Integer.MIN_VALUE;
             String hourMin = "";
             String hourMax = "";
             Calendar cal = Calendar.getInstance();
@@ -37,12 +37,12 @@ public class MinMaxTempForLastWeekController {
             Date dateAjust = cal.getTime();
             SimpleDateFormat formaterMinMax = new SimpleDateFormat("E");
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                if(min > Math.round(dht22.getTemperature())){
-                    min = Math.round(dht22.getTemperature());
+                if(min > Math.round(dht22.getTemperature()*100.0)/100.0){
+                    min = Math.round(dht22.getTemperature()*100.0)/100.0;
                     hourMin = dht22.getHour();
                 }
-                if(max < Math.round(dht22.getTemperature())) {
-                    max = Math.round(dht22.getTemperature());
+                if(max < Math.round(dht22.getTemperature()*100.0)/100.0) {
+                    max = Math.round(dht22.getTemperature()*100.0)/100.0;
                     hourMax = dht22.getHour();
                 }
             }

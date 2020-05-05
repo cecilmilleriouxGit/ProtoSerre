@@ -31,7 +31,7 @@ public class AllDataForLastWeekController {
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
             ArrayList arrayListTemperatureSorted = new ArrayList();
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                arrayListTemperatureSorted.add(Math.round(dht22.getTemperature()));
+                arrayListTemperatureSorted.add(Math.round(dht22.getTemperature()*100.0)/100.0);
             }
             Collections.sort(arrayListTemperatureSorted);
             for (Object dht22 : arrayListTemperatureSorted) {
