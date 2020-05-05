@@ -31,7 +31,7 @@ public class AllDataController {
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
             ArrayList arrayListTemperatureSorted = new ArrayList();
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                arrayListTemperatureSorted.add(Math.round(dht22.getTemperature()));
+                arrayListTemperatureSorted.add(Math.round(dht22.getTemperature()*100.0)/100.0);
             }
             Collections.sort(arrayListTemperatureSorted);
             for (Object dht22 : arrayListTemperatureSorted) {
@@ -53,7 +53,7 @@ public class AllDataController {
             SimpleDateFormat formater = new SimpleDateFormat("(yyyy, MM, dd)");
             ArrayList arrayListSorted = new ArrayList();
             for (Dht22 dht22 : dateOfSaveToArrayList.getDht22Set()) {
-                arrayListSorted.add(Math.round(dht22.getHumidity()));
+                arrayListSorted.add(Math.round(dht22.getHumidity()*100.0)/100.0);
             }
             Collections.sort(arrayListSorted);
             for (Object dht22 : arrayListSorted) {

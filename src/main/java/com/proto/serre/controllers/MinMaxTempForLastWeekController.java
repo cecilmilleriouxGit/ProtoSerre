@@ -28,8 +28,6 @@ public class MinMaxTempForLastWeekController {
         // All temperature for seven days
         List<DateOfSave> allDateOfSaveForSevenDays = dateOfSaveRepository.findByDateForSevenDays();
         ArrayList globalTemperatureMinMaxListForSevenDays = new ArrayList();
-        NumberFormat df = new DecimalFormat("00.00");
-        df.setRoundingMode((RoundingMode.DOWN));
         for (DateOfSave dateOfSaveToArrayList : allDateOfSaveForSevenDays) {
             // Min and Max temperature for seven days
             ArrayList arrayListDateAndTemperatureMinMax = new ArrayList();
